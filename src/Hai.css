@@ -1,0 +1,329 @@
+.hai-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100dvh;
+  z-index: 9999;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  background-color: rgba(0, 0, 0, 0.8);
+  will-change: opacity;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.hai-fade-in {
+  opacity: 1;
+}
+
+.hai-fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hai-close-btn {
+  position: absolute;
+  left: 22vw;
+  bottom: 1.5vw;
+  font-size: 1.1rem;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 6px;
+  padding: 0.8rem 1.2rem;
+  font-family: monospace;
+  border: 1px solid green;
+  backdrop-filter: blur(4px);
+  color: rgb(186, 255, 174);
+  background-color: #1eff0020;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out,
+    padding 0.2s ease-in-out, font-size 0.2s ease-in-out,
+    bottom 0.2s ease-in-out;
+}
+
+.hai-close-btn:active {
+  transform: scale(0.9);
+}
+
+.hai-close-btn:hover {
+  bottom: 1rem;
+  font-size: 1.3rem;
+  padding: 0.5rem 1rem;
+  background-color: #ffffff40;
+}
+
+.hai-instruction-img,
+.hai-hey-img {
+  width: 20vw;
+  height: auto;
+  animation-duration: 0.7s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+}
+
+.hai-instruction-img {
+  transform: rotate(20deg) translateY(10%) translateX(0%);
+  filter: drop-shadow(0 0 7px white);
+}
+
+.hai-hey-img {
+  transform: rotate(10deg) translateY(-80%) translateX(-55%);
+}
+
+.hai-hey-img-enter {
+  animation-name: hai-hey-jump-in;
+}
+
+@keyframes hai-hey-jump-in {
+  0% {
+    transform: rotate(25deg) translateY(85%) translateX(-115%) scaleX(0.5);
+    opacity: 0.5;
+  }
+
+  33% {
+    transform: rotate(10deg) translateY(-100%) translateX(-55%) scaleX(1.5)
+      scaleY(0.5);
+    opacity: 1;
+  }
+
+  66% {
+    transform: rotate(20deg) translateY(-48%) translateX(-70%) scaleX(0.7)
+      scaleY(1.5);
+    opacity: 1;
+  }
+
+  100% {
+    transform: rotate(10deg) translateY(-80%) translateX(-55%) scaleY(1)
+      scaleX(1);
+  }
+}
+
+.hai-hey-img-exit {
+  animation-name: hai-hey-jump-out;
+}
+
+@keyframes hai-hey-jump-out {
+  100% {
+    transform: rotate(20deg) translateY(70%) translateX(-100%) scaleX(0.5);
+    opacity: 0;
+  }
+
+  66% {
+    transform: rotate(10deg) translateY(-100%) translateX(-55%) scaleX(1.5)
+      scaleY(0.5);
+    opacity: 1;
+  }
+
+  33% {
+    transform: rotate(20deg) translateY(-48%) translateX(-70%) scaleX(0.7)
+      scaleY(1.5);
+    opacity: 1;
+  }
+
+  0% {
+    transform: rotate(10deg) translateY(-80%) translateX(-55%) scaleY(1)
+      scaleX(1);
+  }
+}
+
+.hai-img-enter {
+  animation-name: hai-jump-in;
+}
+
+@keyframes hai-jump-in {
+  0% {
+    transform: rotate(50deg) translateX(30%) translateY(100%) scale(0.5);
+    opacity: 0;
+  }
+
+  50% {
+    transform: rotate(20deg) translateX(3%) translateY(3%) scale(1.05);
+    opacity: 1;
+  }
+
+  100% {
+    transform: rotate(20deg) translateX(0%) translateY(10%);
+  }
+}
+
+.hai-img-exit {
+  animation-name: hai-jump-out;
+}
+
+@keyframes hai-jump-out {
+  0% {
+    transform: rotate(20deg) translateX(0%) translateY(10%);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(50deg) translateX(30%) translateY(100%);
+    opacity: 0;
+  }
+}
+
+.hai-countdown {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 6px;
+  font-family: monospace;
+  padding: 0.4rem 0.8rem;
+  color: rgb(255, 0, 0);
+  border: 1px solid red;
+  background: rgba(255, 0, 0, 0.1);
+}
+
+/* Mobile potrait Start */
+@media only screen and (max-width: 767px) and (orientation: portrait) {
+  .hai-instruction-img {
+    width: 190px;
+    /* background-color: rebeccapurple; */
+  }
+
+  .hai-hey-img {
+    width: 190px;
+  }
+
+  .hai-close-btn {
+    left: unset;
+    right: 10px;
+    bottom: 10px;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .hai-countdown {
+    top: 10px;
+    right: 10px;
+    font-size: 1rem;
+  }
+
+  .hai-close-btn:hover {
+    bottom: 10px;
+    font-size: 1.3rem;
+    padding: 0.3rem 0.7rem;
+  }
+}
+/* Mobile potrait End */
+
+/* Mobile Landscape Start */
+@media only screen and (max-width: 1024px) and (max-height: 500px) and (orientation: landscape) {
+  .hai-instruction-img {
+    width: 50vh;
+    /* background-color: blue; */
+  }
+
+  .hai-hey-img {
+    width: 50vh;
+    /* background-color: blue; */
+  }
+
+  .hai-close-btn {
+    left: unset;
+    right: 10px;
+    bottom: 10px;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .hai-close-btn:hover {
+    bottom: 10px;
+    font-size: 1.3rem;
+    padding: 0.3rem 0.7rem;
+  }
+
+  .hai-countdown {
+    font-size: 1rem;
+    /* background-color: blue; */
+  }
+}
+
+/* Mobile Landscape End */
+
+/* Tablet Potrait Start */
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (min-height: 501px) and (orientation: portrait) {
+  .hai-instruction-img {
+    width: 30vh;
+    /* background-color: red; */
+  }
+
+  .hai-hey-img {
+    width: 32vh;
+  }
+
+  .hai-close-btn {
+    left: unset;
+    right: 20px;
+    bottom: 20px;
+    font-size: 1.8rem;
+  }
+
+  .hai-countdown {
+    top: 20px;
+    right: 20px;
+    font-size: 1.8rem;
+  }
+}
+/* Tablet Potrait End */
+
+/* Tablet Landscape Start */
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (min-height: 501px) and (orientation: landscape) {
+  .hai-instruction-img {
+    width: 32vh;
+    /* background-color: red; */
+  }
+
+  .hai-hey-img {
+    width: 32vh;
+  }
+
+  .hai-close-btn {
+    left: unset;
+    right: 20px;
+    bottom: 20px;
+    font-size: 1.35rem;
+  }
+
+  .hai-countdown {
+    top: 20px;
+    right: 20px;
+    font-size: 1.35rem;
+  }
+}
+/* Tablet Landscape End */
+
+/* Larger Tablet start */
+@media only screen and (min-width: 1025px) and (max-width: 1240px) and (orientation: landscape) {
+  .hai-close-btn {
+    font-size: 1.35rem;
+  }
+
+  .hai-countdown {
+    font-size: 1.35rem;
+  }
+}
+
+/* Larger Tablet start */
+
+/* Small Laptop Start */
+@media only screen and (min-width: 1241px) and (max-width: 1440px) {
+  .hai-instruction-img {
+    width: 30vh;
+    /* background-color: red; */
+  }
+
+  .hai-hey-img {
+    width: 30vh;
+  }
+
+  .hai-close-btn {
+    font-size: 1.75rem;
+  }
+
+  .hai-countdown {
+    font-size: 1.5rem;
+  }
+}

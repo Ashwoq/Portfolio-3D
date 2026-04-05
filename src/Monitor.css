@@ -1,0 +1,192 @@
+.pfBoxWrapper {
+  border-radius: 6px;
+  border: 2px solid #10b981;
+  background-color: #f0fdf4;
+  overflow: hidden;
+  position: fixed;
+  right: 2%;
+  top: 2%;
+  padding: 3px 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, border-color 0.3s ease, max-width 0.8s ease,
+    background-color 0.4s ease;
+  /* box-shadow: 0 0 4px rgba(16, 185, 129, 0.4); */
+  min-width: 60px;
+}
+
+/* Hover effect for non-touch, collapsed state */
+@media (hover: hover) and (pointer: fine) {
+  .pfBoxWrapper:not(.expanded):hover {
+    transform: scale(1.1);
+    border-color: #00ffa2;
+  }
+
+  .pfBoxWrapper.expanded:hover {
+    border-color: #00ffcc;
+    background-color: #ffffff;
+  }
+
+  .pfBoxWrapper:hover .pfDetails {
+    background-color: #d3fcd7;
+  }
+
+  .pfBoxWrapper:hover .pfSystemInfoGroup {
+    background-color: rgba(0, 242, 255, 0.2);
+  }
+}
+
+/* Expand/collapse arrow next to Smooth Meter */
+.arrow {
+  display: inline-block;
+  margin-left: 4px;
+  transition: transform 0.3s ease;
+  font-size: 12px;
+}
+
+.arrow.rotate {
+  transform: rotate(180deg);
+}
+
+/* Smooth expand/collapse with fixed outer container */
+.pfDetailsWrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, opacity 0.6s ease;
+  width: 100%;
+  opacity: 0;
+}
+
+.pfDetailsWrapper.open {
+  max-height: 500px;
+  opacity: 1;
+}
+
+.pfBox {
+  width: 100%;
+  border-radius: 3px;
+  height: 16px;
+  background-color: #d1fae5;
+  position: relative;
+  overflow: hidden;
+}
+
+.pfFill {
+  height: 100%;
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 0.4s ease-in-out, background-color 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  border-radius: 3px;
+}
+
+.pfText {
+  position: relative;
+  z-index: 2;
+  font-size: 11px;
+  color: #064e3b;
+  /* color: #fff; */
+  font-weight: bold;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease;
+}
+
+.pfLabel {
+  font-size: 9.5px;
+  color: #065f46;
+  text-align: center;
+  z-index: 3;
+  line-height: 1.1;
+  font-weight: 600;
+  margin-top: 2px;
+  user-select: none;
+}
+
+.pfDetails {
+  font-size: 11px;
+  color: #064e3b;
+  text-align: left;
+  margin-top: 4px;
+  background-color: #c2ffc8;
+
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease-in-out;
+  /* box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.05); */
+  width: 100%;
+}
+
+.pfDetails > div {
+  display: flex;
+  margin-top: 4px;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pfSystemInfoGroup {
+  margin-top: 6px;
+  padding: 5px;
+  border-radius: 6px;
+  background-color: rgba(0, 242, 255, 0.3);
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.pfSystemInfoGroup > div {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pfSystemInfoGroup strong {
+  color: #006789;
+}
+
+.badge {
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-weight: bold;
+  min-width: 37px;
+  text-align: center;
+  font-size: 10px;
+  color: white;
+  border: 1px solid transparent;
+}
+
+/* Color Variants */
+.badge.green {
+  background-color: #1dc55b;
+  border-color: #15803d;
+}
+
+.badge.yellow {
+  color: #8c5202;
+  background-color: #facc15;
+  border-color: #a16207;
+}
+
+.badge.red {
+  background-color: #f00f0f;
+  border-color: #b00000;
+}
+
+.badge.blue {
+  background-color: #2ca7ff;
+  border-color: #0084ff;
+}

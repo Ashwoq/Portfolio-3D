@@ -1,0 +1,504 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root,
+.scroll {
+  width: 100%;
+  height: 100dvh;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  overflow: hidden;
+}
+
+#root {
+  overflow: auto;
+}
+
+body {
+  position: fixed;
+  overflow: hidden;
+  overscroll-behavior-y: none;
+  background-color: #000;
+  /* background: radial-gradient(circle at bottom center, #212121 0%, #101010 80%); */
+  /*  */
+  font-family: "Urbanist", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  /* font-style: normal; */
+  /*  */
+  -webkit-font-smoothing: antialiased;
+  overflow-y: scroll; /* allows scrolling */
+  -ms-overflow-style: none; /* IE & Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+a {
+  color: #005eff;
+  transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+  color: #00c6fb;
+}
+
+/* alert */
+@keyframes overlayFadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.custom-alert-box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  z-index: 9999;
+  animation: overlayFadeIn 0.3s ease;
+}
+
+.custom-alert-boxer {
+  margin-top: 70px;
+  max-width: 95%;
+  width: 380px;
+  background: linear-gradient(to right, #0a0f1b, #101c2c);
+  color: #e0e0ff;
+  font-weight: 500;
+  padding: 10px 26px 30px 26px;
+  border-radius: 7px;
+  border: 1px solid #00f0ff;
+  box-shadow: 0 0 25px #00eeff4d;
+  text-align: center;
+  animation: dropBounce 0.7s ease-in-out forwards;
+}
+
+.custom-alert-message {
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+
+#custom-alert-overlay .custom-alert-btn {
+  border: none;
+  color: black;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  width: max-content;
+  border-radius: 4px;
+  line-height: 1em;
+  padding: 10px 15px;
+  background-color: white;
+  will-change: opacity, transform, filter;
+  box-shadow: 0 0 0 0em #0a0f1b inset, 0 0 0 0em #e0e0ff inset,
+    -0em 0em 0 #0a0f1b inset, 0 0em 10px #e0e0ff;
+  transition: border-radius 0.1s ease-in, transform 0.5s ease-in,
+    box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out,
+    color 0.4s ease-in-out;
+}
+
+#custom-alert-overlay .custom-alert-btn:hover {
+  background-color: #f0f0f0;
+  color: white;
+  border-radius: 10px;
+
+  box-shadow: 0 0 0 0.1em #fff inset, 0 0 0 1.5em #101c2c inset,
+    -0.3em 0.5em 0 #fff inset, 0 0.2em 0 #101c2c;
+}
+
+@keyframes dropBounce {
+  0% {
+    transform: translateY(-125%) scaleX(0.1) scaleY(0.4);
+    opacity: 0;
+  }
+  33% {
+    transform: translateY(30%) scaleX(1.2) scaleY(0.7);
+    opacity: 1;
+  }
+  66% {
+    transform: scaleX(0.9);
+  }
+
+  100% {
+    transform: translateY(0%) scaleY(1) scaleX(1);
+  }
+}
+
+/* alert */
+
+.scroll {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  scroll-snap-type: y proximity;
+}
+
+.scroll > div {
+  scroll-snap-align: start;
+}
+
+.shimmer {
+  overflow: hidden;
+  background: linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.05) 25%,
+    rgba(255, 255, 255, 0.05) 40%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.05) 60%,
+    rgba(255, 255, 255, 0.05) 75%
+  );
+
+  background-size: 200% 100%;
+  animation: shimmer-animation 5s infinite alternate-reverse ease-in-out;
+}
+
+@keyframes shimmer-animation {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* App Start*/
+.main-scene-container {
+  opacity: 0;
+  transition: opacity 0.7s ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  pointer-events: none;
+  background-color: black;
+}
+
+.main-scene-container.visibler {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* App End*/
+
+/* Bottom End */
+.indicatorBox {
+  position: fixed;
+  left: 2%;
+  bottom: 2%;
+}
+
+.mouser {
+  width: 30px;
+  border-radius: 16px;
+  background-color: white;
+  box-shadow: 0px 0px 15px #ffffff;
+}
+
+.toucher {
+  width: 32px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0px 0px 15px #ffffff;
+}
+
+/* spl btn start */
+
+.exx {
+  width: 35px;
+  height: 35px;
+  padding: 5px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  border-radius: 8px;
+  background-color: white;
+
+  will-change: filter, transform;
+  transition: filter 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.exx img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  will-change: transform, opacity;
+}
+
+/* Hidden below */
+.iconeron {
+  transform: translateY(0%) scale(2);
+  opacity: 0;
+}
+
+/* Slide in */
+.isfullScreen {
+  transform: translateY(0%) scale(0.85);
+  opacity: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .exx:hover .isfullScreen {
+    transform: translateY(0%) scale(0.55);
+    filter: drop-shadow(0px 0px 5px black);
+  }
+}
+
+/* spl btn end */
+
+/* social start */
+.bottomBox {
+  display: flex;
+  gap: 10px;
+  position: fixed;
+  right: 25px;
+  bottom: 12px;
+  /* z-index: 9900; */
+  align-items: center;
+  flex-direction: column;
+}
+
+.batteryBox {
+  z-index: 9900;
+}
+
+.socialBox {
+  width: 35px;
+  height: 35px;
+  padding: 5px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: white;
+  will-change: filter, transform;
+  transition: filter 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.socialBox:nth-child(2) {
+  padding: 5px 6px 6px 6px;
+}
+
+.socialBox img {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  will-change: transform;
+  transition: transform 0.1s ease-in-out;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .socialBox:hover,
+  .exx:hover {
+    filter: invert();
+    transform: scale(1.2);
+  }
+  .socialBox:hover img {
+    transform: scale(0.7);
+    filter: drop-shadow(0px 0px 5px black);
+  }
+}
+
+.socialBox:active,
+.exx:active {
+  transform: scale(0.9);
+}
+
+/* social end */
+
+.water-wave-top {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 7px;
+  color: #fff;
+  background-color: white;
+  border: 2px solid black;
+  transform: translate(-50%, 20%);
+}
+
+.water-round-container {
+  width: 35px;
+  height: 55px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 7px;
+  border: 2px solid black;
+  background-color: white;
+  animation: water-waves linear infinite;
+}
+
+.water-percent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  color: #000;
+  font-size: 0.8em;
+  font-weight: bold;
+  transform: translate(-50%, -50%);
+}
+
+.water-wave1 {
+  position: absolute;
+  top: 40%;
+  left: -25%;
+  width: 200%;
+  height: 120%;
+  opacity: 0.7;
+  border-radius: 35%;
+  animation: inherit;
+  background: #33cfff;
+  animation-duration: 5s;
+}
+
+.water-wave2 {
+  position: absolute;
+  top: 45%;
+  left: -35%;
+  width: 200%;
+  height: 120%;
+  opacity: 0.5;
+  animation: inherit;
+  border-radius: 30%;
+  background: #0eaffe;
+  animation-duration: 7s;
+}
+
+.water-wave3 {
+  position: absolute;
+  top: 50%;
+  left: -35%;
+  width: 200%;
+  height: 120%;
+  opacity: 0.3;
+  animation: inherit;
+  border-radius: 25%;
+  background: #0f7ae4;
+  animation-duration: 11s;
+}
+
+@keyframes water-waves {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Bottom End */
+
+/* Mobile Potrait Start */
+@media only screen and (max-width: 767px) and (orientation: portrait) {
+  .main-scene-container {
+    transition: opacity 1.5s ease-in-out;
+  }
+
+  .bottomBox {
+    gap: 8px;
+    right: 5px;
+    bottom: 5px;
+  }
+
+  .socialBox,
+  .exx {
+    width: 30px;
+    height: 30px;
+    padding: 4px;
+  }
+
+  .water-percent {
+    font-size: 0.7em;
+  }
+
+  .socialBox:nth-child(2) {
+    padding: 5px;
+  }
+
+  .water-round-container {
+    width: 30px;
+    height: 50px;
+  }
+}
+/* Mobile Potrait End */
+
+/* Mobile Landscape Start */
+@media only screen and (max-width: 1024px) and (max-height: 500px) and (orientation: landscape) {
+  .bottomBox {
+    gap: 8px;
+    right: 5px;
+    bottom: 5px;
+  }
+
+  .socialBox:nth-child(2) {
+    padding: 5px;
+  }
+
+  .socialBox,
+  .exx {
+    width: 30px;
+    height: 30px;
+    padding: 4px;
+  }
+
+  .water-round-container {
+    width: 30px;
+    height: 50px;
+  }
+}
+
+/* Tablet Start */
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (min-height: 501px) {
+  .bottomBox {
+    gap: 12px;
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .socialBox,
+  .exx {
+    width: 40px;
+    height: 40px;
+    padding: 4px;
+  }
+
+  .socialBox:nth-child(2) {
+    padding: 5px;
+  }
+
+  .water-round-container {
+    width: 40px;
+    height: 55px;
+  }
+}
+/* Tablet End */
