@@ -39,6 +39,13 @@ Some assets and references in this version are **NOT created by me** and are use
 
 ---
 
+### 🧱 Other Models (Background Elements)
+
+- Used various assets for background elements such as Alexa, Mjolnir, plant, corner shelf, axe, trophy, and others  
+- Credits to the respective creators  
+
+---
+
 ### 🎥 Scroll Animation Reference
 
 - **Source (CodeSandbox / Original Idea):**
